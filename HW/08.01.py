@@ -1,31 +1,47 @@
-# Task 1 - find circle square
+def add_2(number):
+    # return достает параметр из ф-и
+    return number + 2
+
+result = add_2(6) # Сохраняем значение
+print(result)
+
+
 def find_circle(radius):
-    print(3.14 * (radius ** 2))
+    return 3.14 * (radius ** 2)
 
-# Task 1 - find figure square
-def find_square_fig(radius = None,
-                    square_side = None,
-                    polygon_sides = None):
-    if radius is not None and square_side is None and polygon_sides is None:
-        print(3.14 * (radius ** 2))
-    elif square_side is not None and radius is None and polygon_sides is None:
-        print(square_side * 2)
-    elif polygon_sides is not None and square_side is None and radius is None:
-        side_1, side_2 = polygon_sides # Распаковали список\кортеж на 2 значения
-        print(side_1 * side_2)
-    else:
-        print('Error')
+result = find_circle(2)
+#print(result)
+def count_letters(text):
+    consonants ='qwrtpsdfghjklzxcvbnm'
+    vowels = 'eyuioa'
+    consonants_total = 0
+    vowels_total = 0
+    text = text.lower()
+    max_value_consonants = 0
+    max_value_vowels = 0
+    for elem in consonants:
+        if elem in text:
+            consonants_total += text.count(elem)
+            if max_value_consonants < text.count(elem):
+                max_value_consonants = text.count(elem)
+                max_letter = elem
+    for elem in vowels:
+        if elem in text:
+            vowels_total += text.count(elem)
+            if max_value_vowels < text.count(elem):
+                max_value_vowels = text.count(elem)
+                max_letter_vowels = elem
+    print(f'Часто встречаемая буква (Согласная): {max_letter}')
+    print(f'Часто встречаемая буква (Гласная): {max_letter_vowels}')
+    return consonants_total, vowels_total
 
-find_circle(2)
-find_square_fig(polygon_sides=(4, 6))
+result = count_letters("Hey, i'm a busy man!")
+print(result)
 
-# Task 3 - Vowels
-def find_vowels(text):
-    dictionary = 'aeuoiy'
-    total = 0
-    for elem in text.lower():
-        if elem in dictionary:
-            total += text.count(elem)
-    print(f'Amount of vowels: {total}')
-
-find_vowels('doggie')
+"""
+Homework:
+1. Почитать о return: https://realpython.com/python-return-statement/#:~:text=The%20Python%20return%20statement%20is%20a%20special%20statement%20that%20you,can%20be%20any%20Python%20object.
+2. Написать функцию, которая будет подсчитывать кол-во удаленных символов из текста
+3. Модифицировать задачу 2 учитывая часто встречаемые символы
+4. (*) Сформировать словарь, где будут хранится удаленные символы
+"""
