@@ -15,9 +15,11 @@ window = Tk()
 
 window.geometry('500x550')
 window.resizable(True,True)
-# For Task 1
 '''
-button = Button(width = 8,
+
+# For Task 1
+
+button = Button(width = 8, 
                 height = 2,
                 text = 'Click!',
                 command=get_random_text)
