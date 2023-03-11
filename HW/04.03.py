@@ -2,9 +2,9 @@ from tkinter import *
 from random import randint
 
 import tkinter.messagebox as mb
-
-# Task 1 - more or less
 '''
+# Task 1 - more or less
+
 def more_or_less():
     def generate_number():
         player_number = int(text_field.get(0.0, END).strip())
@@ -105,3 +105,4 @@ for widget in widgets:
     widget.pack(anchor='n')
 
 window.mainloop()
+
