@@ -1,0 +1,5 @@
+Задачи:
+1. Почитать о функциях в питоне: https://istories.media/workshops/2020/12/23/vvedenie-v-python-chast-8-funktsii/
+2. https://www.codewars.com/kata/57a0e5c372292dd76d000d7e
+3. https://www.codewars.com/kata/56530b444e831334c0000020
+4. https://www.codewars.com/kata/562926c855ca9fdc4800005b
