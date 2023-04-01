@@ -6,3 +6,7 @@
 Write a Python program to check that a string contains only
 a certain set of characters (in this case a-z, A-Z and 0-9).
 '''
+# int()\float()
+n = int(input('Enter a number: '))
+n2 = int(input('Enter a number2: '))
+print(n + n2)
