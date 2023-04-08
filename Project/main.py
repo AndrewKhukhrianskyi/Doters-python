@@ -14,12 +14,17 @@ Main - это файл, который отвечает за запуск
 # Functions (Функции)
 def find_data():
     regex = regex_text.get(0.0, END).strip()
-    text = text_field.get(0.0, END).strip()
-    '''
-    TODO:
-    1. Дописать логику find_data
-    '''
-    #re.findall(rf'{regex}', ...)
+    if len(regex) == 0:
+        mb.showerror(title='Error',
+                     message='Please, enter regular expression!')
+        mb.showerror(title='Сообщение',
+                     message = 'Это сообщение для сообщения с ошибкой!')
+    else:
+        text = text_field.get(0.0, END).strip()
+        result_regex = re.findall(rf'{regex}', text) # [1, 2, 3, 4]
+        result_field.insert(0.0, str(result_regex))
+        mb.showinfo(title='Message',
+                    message = 'Данные были записаны в поле результата!')
 def clear_data():
     fields = [regex_text,
               text_field,
@@ -32,6 +37,46 @@ def clear_data():
             
         mb.showinfo(title='Message',
                     message = 'Data cleared!')
+
+def analyze_text(language_status='en'):
+    text = text_field.get(0.0, END).strip().lower()
+    result = []
+    result_text = ''
+    if language_status == 'en':
+        # Кол-во гласных букв реализовывается тут
+        vowels = 'aeouiy'
+        consonants = 'qwrtpsdfghjklzxcvbnm'
+        vowels_count = 0
+        for vowel in vowels:
+            vowels_count += text.count(vowel)
+        result.append(vowels_count)
+        # Кол-во согласных букв реализовывается тут
+        consonants_count = 0
+        for consonant in consonants:
+            consonants_count += text.count(consonant)
+        result.append(consonants_count)
+        # Кол-во символов реализовывается тут
+        result.append(len(text))
+        # Часто встречаемая буква реализовывается тут
+        dictionary_letters = {} # {'a':..., 'b' : ...
+        for letter in LANGUAGE_EN:
+            dictionary_letters[letter] = text.count(letter)
+        maximum_value = max(dictionary_letters.values())
+
+        dictionary_letters = dict(zip(dictionary_letters.values(),
+                                      dictionary_letters.keys()))
+        result.append(f'{dictionary_letters[maximum_value]}({maximum_value})')
+        for elem in range(len(ANALYZE_TEXT_LIST)): # range(0, 8)
+            try:
+                result_text += f'{ANALYZE_TEXT_LIST[elem]} {result[elem]}\n'
+            except IndexError:
+                result_text += f'{ANALYZE_TEXT_LIST[elem]} Нема ничего, дядя!\n'
+        result_field.insert(0.0, result_text)
+        
+
+        
+        
+        
 
 # UI (Графическая часть)
 window = Tk()
@@ -63,10 +108,19 @@ clear_button = Button(width = BUTTON_WIDTH,
                       height = BUTTON_HEIGHT,
                       text = 'Clear!',
                       command = clear_data)
-# TODO - прописать кнопку, которая вызывает find_data
+regex_button = Button(width = BUTTON_WIDTH,
+                      height = BUTTON_HEIGHT,
+                      text = 'Find!',
+                      command = find_data)
+analyze_button = Button(width = BUTTON_WIDTH,
+                      height = BUTTON_HEIGHT,
+                      text = 'Analyze!',
+                      command = analyze_text)
+
 widgets = [regex_label, regex_text,
            text_label, text_field,
-           result_label, result_field, clear_button]
+           result_label, result_field, clear_button,
+           regex_button, analyze_button]
 
 for widget in widgets:
     widget.pack(anchor='n')
